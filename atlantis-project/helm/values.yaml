@@ -1,14 +1,19 @@
 replicaCount: 1
+
+namespace: atlantis # Crie um namespace específico para o Atlantis
+
 server:
   atlantisURL: "http://atlantis.your-domain.com"
   ghUser: "your-github-username"
-  ghToken: "your-github-token" # Configure via secret
-  ghWebhookSecret: "your-webhook-secret" # Configure via secret
+  ghToken: "your-github-token" # Use secrets para isso
+  ghWebhookSecret: "your-webhook-secret"
   repoAllowlist: "github.com/your-github-username/*"
 
 ingress:
   enabled: true
   className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
   hosts:
     - host: atlantis.your-domain.com
       paths:
