@@ -1,0 +1,20 @@
+replicaCount: 1
+server:
+  atlantisURL: "http://atlantis.your-domain.com"
+  ghUser: "your-github-username"
+  ghToken: "your-github-token" # Configure via secret
+  ghWebhookSecret: "your-webhook-secret" # Configure via secret
+  repoAllowlist: "github.com/your-github-username/*"
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: atlantis.your-domain.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: atlantis-tls
+      hosts:
+        - atlantis.your-domain.com
